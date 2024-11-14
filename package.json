@@ -1,0 +1,27 @@
+{
+  "name": "todos-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "set ENVIRONMENT=testing && jest --testTimeout=10000",
+    "seed": "node ./seeding/testing.seed.js",
+    "dev": "nodemon server.js",
+    "pretest": "set ENVIRONMENT=testing && node ./seeding/testing.seed.js"
+  },
+  "author": "Mohammed Che",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.9.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^2.0.20",
+    "supertest": "^7.0.0"
+  }
+}
