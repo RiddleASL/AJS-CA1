@@ -1,49 +1,49 @@
 require('dotenv').config();
+const bcrypt = require('bcryptjs');
 const { connect, disconnect } = require('../utils/db');
-const Todo = require('../models/todo.model');
+
+const Artist = require('../models/artist.model');
 const User = require('../models/user.model');
 
-const users = [
+const usersBase = [
     {
-        name: 'Mo Che',
-        email: 'mo@testing.com',
-        password: 'secret'
+        username: 'aaron',
+        email: 'aaron@testing.com',
+        password: 'password',
     }
 ];
 
-const todos = [
+const users = usersBase.map((user) => {
+    user.password = bcrypt.hashSync(user.password, 10);
+    return user;
+});
+
+const artists = [
     {
-        text: 'Clean my office',
-        completed: true
+        name: 'Kendrick Lamar',
+        genre: 'Hip Hop',
     },
     {
-        text: 'Buy new keyboard',
-        completed: true
+        name: 'Beyonce',
+        genre: 'Pop',
     },
     {
-        text: 'Finish CA1 in Testing101',
-        completed: false
+        name: 'Ed Sheeran',
+        genre: 'Ginger',
     },
-    {
-        text: 'Fix the problem with the thing',
-        completed: false
-    },
-    {
-        text: 'Clean the car',
-        completed: false
-    }
 ];
 
 let seedDB = async () => {
     await connect();
     await User.deleteMany();
-    await Todo.deleteMany();
+    await Artist.deleteMany();
 
     await User.insertMany(users);
-    await Todo.insertMany(todos);
+    await Artist.insertMany(artists);
 };
 
 seedDB().then(() => {
     console.log('Operation successfull!');
+    
     disconnect();
 });

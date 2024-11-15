@@ -8,15 +8,17 @@ const {
     createData,
     updateData,
     deleteData,
-    toggleDone
-} = require('../controllers/todo.controller');
+    addSong,
+    removeSong
+} = require('../controllers/song.controller');
 
 router
     .get('/', readData)
-    .get('/:id', loginRequired, readOne)
-    .put('/:id/toggle', loginRequired, toggleDone)
+    .get('/:id', readOne)
     .post('/', loginRequired, createData)
     .put('/:id', loginRequired, updateData)
-    .delete('/:id', loginRequired, deleteData);
+    .delete('/:id', loginRequired, deleteData)
+    .post('/:id/add', loginRequired, addSong)
+    .delete('/:id/remove', loginRequired, removeSong);
 
 module.exports = router;

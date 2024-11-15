@@ -33,7 +33,9 @@ app.use((req, res, next) => {
     }
 });
 
-app.use('/api/todos', require('./routes/todos'));
+app.use('/api/songs', require('./routes/songs'));
+app.use('/api/albums', require('./routes/albums'));
+app.use('/api/artists', require('./routes/artists'));
 app.use('/api/users', require('./routes/users'));
 
 module.exports = app;
