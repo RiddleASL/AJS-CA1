@@ -26,10 +26,12 @@ const login = (req, res) => {
         email: req.body.email
     })
         .then((user) => {
-            if (!user || !user.comparePassword(req.body.password)) {
+            if (!user || !user.compareName(req.body.username) || !user.comparePassword(req.body.password)) {
                 res.status(401).json({
                     msg: 'Authentication failed. Invalid user or password'
                 });
+                console.log(req.body.username);
+                
             } else {
                 let token = jwt.sign(
                     {

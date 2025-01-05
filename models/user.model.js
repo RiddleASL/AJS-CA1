@@ -28,4 +28,10 @@ userSchema.methods.comparePassword = function(password){
     });
 };
 
+userSchema.methods.compareName = function(name){
+    console.log("getting name");
+    
+    return name === this.username;
+}
+
 module.exports = model('User', userSchema);
