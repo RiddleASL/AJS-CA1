@@ -282,7 +282,7 @@ const getLikedSongs = (req, res) => {
 			if (data.length > 0) {
 				res.status(200).json(data);
 			} else {
-				res.status(404).json("No liked songs found");
+				res.status(404).json({msg: "No liked songs found" });
 			}
 		})
 		.catch((err) => {
