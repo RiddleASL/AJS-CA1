@@ -248,6 +248,27 @@ const removeAlbum = (req, res) => {
 		});
 }
 
+const getLikedAlbums = (req, res) => {
+    const authHeader = req.headers.authorization;
+    const token = jwt.verify(authHeader.split(" ")[1], process.env.APP_KEY);
+    const userId = token._id;
+
+    User_Albums.find({ userId })
+        .then((data) => {
+            if (data.length > 0) {
+                res.status(200).json(data);
+            } else {
+                res.status(404).json({
+                    message: "No liked albums found",
+                });
+            }
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).json(err);
+        });
+}
+
 module.exports = {
     readData,
     readOne,
