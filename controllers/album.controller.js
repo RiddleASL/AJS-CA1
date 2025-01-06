@@ -5,6 +5,8 @@ const Artist = require('../models/artist.model');
 const User_Albums = require('../models/users_albums.model');
 const Artist_Album = require('../models/artists_albums.model');
 
+const jwt = require("jsonwebtoken");
+
 const readData = (req, res) => {
     Album.find()
         .then((data) => {
@@ -259,7 +261,7 @@ const getLikedAlbums = (req, res) => {
                 res.status(200).json(data);
             } else {
                 res.status(404).json({
-                    message: "No liked albums found",
+                    msg: "No liked albums found",
                 });
             }
         })
