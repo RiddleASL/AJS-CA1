@@ -278,12 +278,11 @@ const getLikedSongs = (req, res) => {
 	const userId = token._id;
 
 	User_Songs.find({ userId })
-		.populate("songId")
 		.then((data) => {
 			if (data.length > 0) {
 				res.status(200).json(data);
 			} else {
-				res.status(404).json([]);
+				res.status(404).json("No liked songs found");
 			}
 		})
 		.catch((err) => {

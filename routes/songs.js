@@ -9,7 +9,8 @@ const {
     updateData,
     deleteData,
     addSong,
-    removeSong
+    removeSong,
+    getLikedSongs
 } = require('../controllers/song.controller');
 
 router
@@ -19,6 +20,7 @@ router
     .put('/:id', loginRequired, updateData)
     .delete('/:id', loginRequired, deleteData)
     .post('/:id/add', loginRequired, addSong)
-    .delete('/:id/remove', loginRequired, removeSong);
+    .delete('/:id/remove', loginRequired, removeSong)
+    .get('/get/liked', loginRequired, getLikedSongs);
 
 module.exports = router;

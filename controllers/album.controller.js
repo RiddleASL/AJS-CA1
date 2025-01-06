@@ -276,5 +276,6 @@ module.exports = {
     updateData,
     deleteData,
     addAlbum,
-    removeAlbum
+    removeAlbum,
+    getLikedAlbums
 };

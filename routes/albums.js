@@ -9,7 +9,8 @@ const {
     updateData,
     deleteData,
     addAlbum,
-    removeAlbum
+    removeAlbum,
+    getLikedAlbums
 } = require('../controllers/album.controller');
 
 router
@@ -19,6 +20,7 @@ router
     .put('/:id', loginRequired, updateData)
     .delete('/:id', loginRequired, deleteData)
     .post('/:id/add', loginRequired, addAlbum)
-    .delete('/:id/remove', loginRequired, removeAlbum);
+    .delete('/:id/remove', loginRequired, removeAlbum)
+    .get('/get/liked', loginRequired, getLikedAlbums);
 
 module.exports = router;
