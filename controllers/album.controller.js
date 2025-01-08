@@ -181,8 +181,6 @@ const addAlbum = (req, res) => {
 	const userId = token._id;
 	const albumId = req.params.id;
 
-	let canAdd = true;
-
 	Album.findById(albumId).then((Album) => {
 		if (!Album) {
 			return res.status(404).json({
@@ -194,9 +192,7 @@ const addAlbum = (req, res) => {
 		User_Albums.findOne({ userId, albumId }).then((data) => {
 			if (data) {
 				return res.status(409).json({
-					message: "Album already in user list",
-					canAdd,
-					data,
+					message: "Album already in user list"
 				});
 			} else {
 				User_Albums.create({ userId, albumId })

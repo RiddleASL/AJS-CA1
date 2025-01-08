@@ -7,7 +7,7 @@ const user_albumSchema = Schema(
             ref: 'User',
             required: true
         },
-        albumID: {
+        albumId: {
             type: Schema.Types.ObjectId,
             ref: 'Album',
             required: true
